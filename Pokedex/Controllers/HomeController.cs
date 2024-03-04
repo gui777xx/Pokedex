@@ -22,13 +22,21 @@ public class HomeController : Controller
             string dados = leitor.ReadToEnd();
             pokemons = JsonSerializer.Deserialize<List<Pokemon>>(dados);
         }
-        return View(pokemons);
+       List<Tipo> tipos = [];
+       using (StreamReader leitor = new("Data\\tipos.json"))
+       {
+            string dados = leitor.ReadToEnd();
+            tipos = JsonSerializer.Deserialize<List<Tipo>>()
+       }
+       ViewData["Tipos"] = tipos;
+       return View(pokemons);
     }
 
-    public IActionResult Privacy()
-    {
-        return View();
-    }
+        public IActionResult Privacy()
+        {
+            return View();
+        }
+
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
