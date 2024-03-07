@@ -26,10 +26,15 @@ public class HomeController : Controller
        using (StreamReader leitor = new("Data\\tipos.json"))
        {
             string dados = leitor.ReadToEnd();
-            tipos = JsonSerializer.Deserialize<List<Tipo>>()
+            tipos = JsonSerializer.Deserialize<List<Tipo>>(dados);
        }
        ViewData["Tipos"] = tipos;
        return View(pokemons);
+    }
+
+    public IActionResult Details(int id)
+    {
+        return View();
     }
 
         public IActionResult Privacy()
