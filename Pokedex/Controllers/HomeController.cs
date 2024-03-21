@@ -55,6 +55,10 @@ public class HomeController : Controller
             return View(details);
     }
 
+    private List<Pokemon> GetPokemons()
+        {}        
+        
+        
         public IActionResult Privacy()
         {
             return View();
